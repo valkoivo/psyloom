@@ -1,0 +1,28 @@
+#hero p{
+	font-size: 1.5rem;
+}
+
+.code-block {
+	background: #1e1e1e;
+	color: #d4d4d4;
+	padding: 16px;
+	border-radius: 8px;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 14px;
+}
+
+.code-block .indent {
+	padding-left: 20px;
+}
+
+.code-block .key {
+	color: #9cdcfe; /* голубой */
+}
+
+.code-block .value-string {
+	color: #ce9178; /* оранжевый */
+}
+
+.code-block .bracket {
+	color: #d4d4d4;
+}
