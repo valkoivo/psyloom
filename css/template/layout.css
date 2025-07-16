@@ -81,6 +81,10 @@ a {
 	border-color: rgb(51, 65, 85);
 }
 
+.full-height .btn-primary{
+	font-size: 1.2rem;
+}
+
 h1, h2 {
 	margin-bottom: 1rem;
 	font-size: 4rem;
@@ -132,6 +136,27 @@ ul {
 .section-about {
 	padding: 1rem 4rem;
 }
+.section-about .container{
+	width: 100%;
+}
+@media (max-width: 768px) {
+	.section-about {
+		padding: 4rem 0.5rem 0;
+	}
+}
+.section-about .container.container-features{
+	max-width: 1600px;
+}
+
+#features, #demo{
+	height: 100px;
+}
+@media (max-width: 768px) {
+	#features, #demo{
+		height: 0;
+	}
+}
+
 .section-about h2{
 	text-align: center;
 	font-size: 2.5rem;

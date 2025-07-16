@@ -42,6 +42,7 @@
 	<!-- Layout and NonJS Components -->
 	<link href="./css/template/layout.css" type="text/css" rel="stylesheet" />
 	<link href="./css/template/typo.css" type="text/css" rel="stylesheet" />
+	<link href="./css/controls/forms/demo_form_login.css" type="text/css" rel="stylesheet" />
 
 </head>
 <body itemscope itemtype="https://schema.org/Blog">
@@ -68,7 +69,7 @@
 					<p>Does your AI agent need a personality? Create intelligent digital personas with our API.</p>
 				</div>
 				<div class="col-12 col-md-12 col-lg-6">
-					<div class="card">
+					<div class="card mb-3">
 						<div class="card-body">
 							<div class="card-body-head">
 								<div class="circles">
@@ -93,8 +94,10 @@
 								</div>
 								<div><span class="bracket">}</span></div>
 							</div>
+							<!-- Переключалку личностей, чтобы были видны разные response -->
 						</div>
 					</div>
+					<a class="btn btn-primary" href="#demo">Chat right now!</a>
 				</div>
 			</div>
 		</section>
@@ -106,7 +109,7 @@
 				<h2>How It Works</h2>
 				<p class="subheader">Just 3 Simple Steps to Get Started</p>
 				<div class="row">
-					<div class="col col-md-12 col-lg-4 p-3">
+					<div class="col-12 col-lg-4 p-3">
 						<div style="text-align: center;">
 							<div class="circle-wrapper">
 								<div class="circle-content">
@@ -120,7 +123,7 @@
 						<h3>1. Describe the Personality</h3>
 						<p>Provide a free-form description — it can be personal, like someone you know, or professional, like a target audience or behavioral profile.</p>
 					</div>
-					<div class="col col-md-12 col-lg-4 p-3">
+					<div class="col-12 col-lg-4 p-3">
 						<div style="text-align: center;">
 							<div class="circle-wrapper">
 								<div class="circle-content">
@@ -134,7 +137,7 @@
 						<h3>2. Psyloom Builds the Mind</h3>
 						<p>Psyloom analyzes the description and constructs a rich psychological model — including traits, values, emotions, and behavioral tendencies.</p>
 					</div>
-					<div class="col col-md-12 col-lg-4 p-3">
+					<div class="col-12 col-lg-4 p-3">
 						<div style="text-align: center;">
 							<div class="circle-wrapper">
 								<div class="circle-content">
@@ -153,15 +156,17 @@
 			</div>
 		</section>
 
-		<div id="features" style="height: 100px;"></div>
+		<div id="features"></div>
 
 		<section class="section section-about">
 			<div class="container">
 				<h2>Solve Deeper Problems. In Any Industry.</h2>
 				<p class="subheader">From product design to education, marketing to mental health — Psyloom helps you simulate, test, and interact with human-like personalities.</p>
+			</div>
+			<div class="container container-features">
 				<div class="row">
 					<!-- Marketing & Advertising -->
-					<div class="col-12 col-xl-6 col-xxl-4 mb-3">
+					<div class="col-12 col-md-6 col-xxl-4 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<div class="card-body-head">
@@ -183,7 +188,7 @@
 						</div>
 					</div>
 					<!-- Product Development -->
-					<div class="col-12 col-xl-6 col-xxl-4 mb-3">
+					<div class="col-12 col-md-6 col-xxl-4 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<div class="card-body-head">
@@ -205,7 +210,7 @@
 						</div>
 					</div>
 					<!-- Education & EdTech -->
-					<div class="col-12 col-xl-6 col-xxl-4 mb-3">
+					<div class="col-12 col-md-6 col-xxl-4 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<div class="card-body-head">
@@ -225,7 +230,7 @@
 						</div>
 					</div>
 					<!-- HR & Corporate Training -->
-					<div class="col-12 col-xl-6 col-xxl-4 mb-3">
+					<div class="col-12 col-md-6 col-xxl-4 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<div class="card-body-head">
@@ -248,7 +253,7 @@
 						</div>
 					</div>
 					<!-- Film, Game Development & Storytelling -->
-					<div class="col-12 col-xl-6 col-xxl-4 mb-3">
+					<div class="col-12 col-md-6 col-xxl-4 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<div class="card-body-head">
@@ -271,7 +276,7 @@
 						</div>
 					</div>
 					<!-- Mental Health & Digital Therapy -->
-					<div class="col-12 col-xl-6 col-xxl-4 mb-3">
+					<div class="col-12 col-md-6 col-xxl-4 mb-3">
 						<div class="card">
 							<div class="card-body">
 								<div class="card-body-head">
@@ -294,11 +299,16 @@
 			</div>
 		</section>
 
-		<section id="demo" class="section section-about">
+		<div id="demo"></div>
+
+		<section class="section section-about">
 			<div class="container">
 				<h2>Try It Now</h2>
 				<p class="subheader">See how Psyloom API works — step by step. Create a digital persona, ask questions, and get human-like answers in real time.</p>
-				<div class="row">
+				<div class="card">
+					<div class="card-body">
+						<demo-panel id="demo_panel" class="d-block"></demo-panel>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -311,6 +321,13 @@
 			</div>
 		</section>
 	</main>
+
+<script type="module">
+	import { DemoPanel } from "./js/demo/controls/panels/demo_panel.js";
+	if (customElements.get(DemoPanel.getTagName()) === undefined) {
+		customElements.define(DemoPanel.getTagName(), DemoPanel);
+	}
+</script>
 
 </body>
 </html>

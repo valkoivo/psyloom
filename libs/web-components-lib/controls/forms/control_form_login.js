@@ -283,7 +283,9 @@ export class KoiFormLogin extends KoiOperationsInterceptable(
 
 	_displayBadConnection(){
 		super._displayBadConnection();
-		this.socket.displayError(this.socket.getBadConnectionText());
+		this.socket.displayError(
+			this._state.getError() || this.socket.getBadConnectionText()
+		);
 	}
 
 	_displayError(){

@@ -136,20 +136,7 @@ export const KoiAPILoadable = Sup => class extends Sup {
 
 	loadAPI(load_url, load_params) {
 		fetch(load_url, load_params)
-			.then(
-				response => {
-					if (!response.ok) {
-						// Ошибка сервера — пробросим её дальше
-						return response.json().then(message => {
-							const error = new Error(message.message || 'Произошла ошибка');
-							error.status = response.status;
-							error.response = response;
-							throw error;
-						});
-					}
-					return this._onLoadAPIFetchSuccess(response);
-				}
-			)
+			.then(response => this._onLoadAPIFetchSuccess(response))
 			.catch(error => this._onLoadAPIFetchError(error));
 	}
 
@@ -355,17 +342,7 @@ export const KoiAPISaveable = Sup => class extends Sup {
 
 	saveAPI(save_url, save_params) {
 		fetch(save_url, save_params)
-			.then(
-				success_response => {
-					if (!success_response.ok) {
-						// Ошибка сервера — пробросим её дальше
-						return success_response.json().then(message => {
-							throw new Error(message.message || 'Произошла ошибка');
-						});
-					}
-					return this._onSaveAPIFetchSuccess(success_response);
-				}
-			)
+			.then(success_response => this._onSaveAPIFetchSuccess(success_response))
 			.catch(error =>this._onSaveAPIFetchError(error));
 	}
 
@@ -559,17 +536,7 @@ export const KoiAPIDeletable = Sup => class extends Sup {
 
 	deleteAPI(save_url, save_params) {
 		fetch(save_url, save_params)
-			.then(
-				success_response => {
-					if (!success_response.ok) {
-						// Ошибка сервера — пробросим её дальше
-						return success_response.json().then(message => {
-							throw new Error(message.message || 'Произошла ошибка');
-						});
-					}
-					return this._onDeleteAPIFetchSuccess(success_response);
-				}
-			)
+			.then(success_response => this._onDeleteAPIFetchSuccess(success_response))
 			.catch(error =>this._onDeleteAPIFetchError(error));
 	}
 

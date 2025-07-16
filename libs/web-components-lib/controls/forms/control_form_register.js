@@ -10,12 +10,12 @@ import { KoiCompositeSocket, KoiSocketTemplateCapable } from "../../../../libs/w
 import { KoiOperationsInterceptable } from "../../../../libs/web-components-lib/event_operated.js";
 
 import { KoiFormFieldString } from "./control_form_field_string.js";
-if (customElements.get('koi-form-field-string') === undefined) {
-	customElements.define('koi-form-field-string', KoiFormFieldString);
+if (customElements.get(KoiFormFieldString.getTagName()) === undefined) {
+	customElements.define(KoiFormFieldString.getTagName(), KoiFormFieldString);
 }
 import { KoiFormFieldPassword } from "./control_form_field_password.js";
-if (customElements.get('koi-form-field-password') === undefined) {
-	customElements.define('koi-form-field-password', KoiFormFieldPassword);
+if (customElements.get(KoiFormFieldPassword.getTagName()) === undefined) {
+	customElements.define(KoiFormFieldPassword.getTagName(), KoiFormFieldPassword);
 }
 import { KoiIdButton } from "../buttons/control_idbutton.js";
 if (customElements.get(KoiIdButton.getTagName()) === undefined) {
@@ -89,7 +89,7 @@ export class KoiFormRegisterSocket extends KoiSocketTemplateCapable(
 				'</fieldset>' +
 			'</form>' +
 		'</div>' +
-		'<div id="' + this.getID('authorizedpanel') + '">' +
+		'<div id="' + this.getID('authorizedpanel') + '" class="d-none">' +
 			this.getSuccessText() +
 		'</div>';
 	}
@@ -334,7 +334,9 @@ export class KoiFormRegister extends KoiOperationsInterceptable(
 
 	_displayBadConnection(){
 		super._displayBadConnection();
-		this.socket.displayError(this.socket.getBadConnectionText());
+		this.socket.displayError(
+			this._state.getError() || this.socket.getBadConnectionText()
+		);
 	}
 
 	_displayError(){
@@ -351,7 +353,9 @@ export class KoiFormRegister extends KoiOperationsInterceptable(
 
 	_updateSocket(){
 		super._updateSocket();
-		this.socket.displaySuccess();
+		if(this._connector._item.data.getToken()){
+			this.socket.displaySuccess();
+		}
 	}
 
 	_constructSocket(){

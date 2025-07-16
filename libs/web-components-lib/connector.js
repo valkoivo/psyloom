@@ -166,9 +166,17 @@ export class KoiCompositeConnector extends KoiCompositeSocket {
 
 export const KoiConnectorInitializable = Sup => class extends Sup {
 
+	_shouldApplyConnectorStateCodeToOwnStateCode(){
+		return true;
+	}
+
 	_determineStateCode(){
+		const own_state_code = super._determineStateCode();
+		if(!this._shouldApplyConnectorStateCodeToOwnStateCode()){
+			return own_state_code;
+		}
 		return KoiState.getWorstCode(
-			super._determineStateCode(), 
+			own_state_code,
 			this._connector.getStateCode()
 		);
 	}

@@ -1,0 +1,119 @@
+.modal-switcher{
+	padding: 0;
+}
+.modal-switcher-contents{
+	background-color: rgba(59, 130, 246, 0.2);
+	border-radius: .4rem;
+	justify-content: center;
+	display: flex;
+	padding: .25rem;
+}
+.modal-switcher-button{
+	border-radius: .4rem;
+	flex: 1;
+	padding: .375rem .75rem;
+	justify-content: center;
+	align-items: center;
+	display: inline-flex;
+}
+.modal-switcher-button a{
+	color: rgb(100, 116, 139);
+	font-size: 0.889rem;
+	text-decoration: none;
+}
+.modal-switcher-button.active{
+	background-color: rgb(255, 255, 255);
+}
+.modal-switcher-button.active a{
+	color: rgb(2, 8, 23);
+}
+.modal-form-panel koi-idbutton{
+	display: block;
+}
+
+
+.demo-panel-login-panel,
+.demo-panel-game-panel{
+	display: block;
+	max-width: 620px;
+	margin:0 auto;
+}
+@media (min-width: 1200px) {
+	.demo-panel-login-panel,
+	.demo-panel-game-panel{
+		width: 620px;
+	}
+}
+
+.demo-panel-login-panel textarea.form-control{
+	min-height: 8rem;
+}
+
+.demo-panel-game-panel h3,
+.demo-panel-game-panel p{
+	text-align: left;
+}
+.demo-panel-game-panel .portrait{
+	width:100%;
+}
+.demo-panel-game-panel .card-footer .choose-btn{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.demo-panel-game-panel .card-character{
+	opacity: 0.6;
+}
+.demo-panel-game-panel .card-character.active{
+	opacity: 1;
+	border-color: rgb(96, 165, 250);
+}
+.demo-panel-game-panel .card-character:hover{
+	opacity: 1;
+	border-color: rgb(96, 165, 250);
+}
+.demo-panel-game-panel .card_description .card-body.card-body-character{
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+}
+.demo-panel-game-panel .card_description .portrait-holder{
+	width: 150px;
+	flex-shrink: 0;
+}
+.demo-panel-game-panel .card_description .card-header h3{
+	margin: 0;
+}
+.demo-panel-game-panel .card_description .card-header {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	align-items: center;
+	background-color: rgba(59, 130, 246, 0.2);
+}
+.demo-panel-game-panel .card_description p.comment{
+	margin: 0 0 1rem;
+	font-size: 1.2rem;
+}
+.demo-panel-game-panel .card_description .card-footer koi-idbutton{
+	margin: 0 0 1rem;
+	display: block;
+}
+
+.demo-chat-panel textarea.form-control{
+	min-height: 8rem;
+}
+.demo-panel-game-panel .step-header{
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	align-items: center;
+	margin-top: 1rem;
+}
+.demo-panel-game-panel .step-header h3{
+	margin: 0;
+}
+.demo-panel-game-panel .form-control,
+.demo-panel-game-panel .form-select{
+	--bs-secondary-bg: rgb(183, 186, 189);
+}

@@ -188,7 +188,18 @@ export class KoiIdButton extends KoiButtonNativeButtonSocketConnectable(
 		return 'koi-idbutton';
 	}
 
-	static getTag({element_id, item_id, item_action, item_value, css_class, btn_class, btn_type, btn_enabled, placeholder, debug_mode}){
+	static getTag({
+		element_id,
+		item_id,
+		item_action,
+		item_value,
+		css_class,
+		btn_class,
+		btn_type,
+		btn_enabled,
+		placeholder,
+		debug_mode
+	}){
 		let tag_name = this.getTagName();
 		let _item_id = item_id? 'item_id="' + item_id + '"' : '';
 		let _item_action = item_action? 'item_action="' + item_action + '"' : '';

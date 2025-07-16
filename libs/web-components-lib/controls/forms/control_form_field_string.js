@@ -48,7 +48,14 @@ export class KoiFormFieldString extends KoiFormFieldStringNativeInputSocketConne
 		return 'koi-form-field-string';
 	}
 
-	static getTag({element_id, field_name, field_value, placeholder, debug_mode, element_class}){
+	static getTag({
+		element_id,
+		field_name,
+		field_value,
+		placeholder,
+		debug_mode,
+		element_class
+	}){
 		let tag_name = this.getTagName();
 		let str_field_name = field_name ? 'field_name="' + field_name + '"' : '';
 		let str_field_value = KoiDataElementString.canConvertToAttribute(field_value) ? 

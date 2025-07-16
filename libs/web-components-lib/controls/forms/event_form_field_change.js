@@ -92,6 +92,10 @@ export const KoiFormFieldChangesInterceptable = Sup => class extends Sup {
 			(event.detail.element_id === this.id);
 	}
 
+	_stopPropagationWhenSocketChanged(event){
+		event.stopPropagation();
+	}
+
 	_attemptApplySocketChange(event){
 		this._log('attemptApplySocketChange()');
 		if(!event){
@@ -100,7 +104,7 @@ export const KoiFormFieldChangesInterceptable = Sup => class extends Sup {
 		if(this._isOwnChangeEvent(event)){
 			return;
 		}
-		event.stopPropagation();
+		this._stopPropagationWhenSocketChanged(event);
 		this._updateSomethingWhenSocketChanged(event.detail);
 		this._onAfterSocketChanged(event.detail);
 	}
