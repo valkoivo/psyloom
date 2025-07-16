@@ -157,6 +157,15 @@ ul {
 	}
 }
 
+#features, #contact{
+	height: 100px;
+}
+@media (max-width: 768px) {
+	#features, #contact{
+		height: 0;
+	}
+}
+
 .section-about h2{
 	text-align: center;
 	font-size: 2.5rem;
@@ -166,6 +175,25 @@ ul {
 	text-align: center;
 	font-size: 1.5rem;
 	margin-bottom: 3rem;
+}
+.section-about .subheader2{
+	text-align: center;
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+}
+.section-about .subheader span{
+	color: rgb(96, 165, 250);
+}
+
+.section-about .subheader a {
+	color: rgb(96, 165, 250);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.section-about .subheader a:hover {
+	color: rgb(59, 130, 246);
+	text-decoration: underline;
 }
 
 .circle-wrapper {
