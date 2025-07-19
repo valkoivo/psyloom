@@ -1,17 +1,27 @@
-import { KoiSocketTemplateCapable, KoiSingleSocket } from "../../../../libs/web-components-lib/socket.js";
+import { KoiSocketTemplateCapable, KoiCompositeSocket } from "../../../../libs/web-components-lib/socket.js";
 import { KoiSocketConnectable, KoiBaseControl, KoiControlConnectorInteractable } from "../../../../libs/web-components-lib/controls/control.js";
 
 export class DemoResponsePanelSocket extends KoiSocketTemplateCapable(
-	KoiSingleSocket
+	KoiCompositeSocket
 ) {
 
+	_getEmptySchemaIds() {
+		return {
+			code_indent: this._holder.id + "_code_indent",
+			done_div: this._holder.id + "_done_div",
+			waiting_indent: this._holder.id + "_waiting_indent"
+		};
+	}
+
 	getTemplate() {
-		return '<p>And here it is:</p>' +
+		return '<p id="' + this.getID('done_div') + '" class="d-none">And here it is:</p>' +
 		'<div class="card">' +
 		'<div class="card-body">' +
 			'<div class="code-block">' +
 				'<div><span class="bracket">{</span></div>' +
-					'<div class="indent" id="' + this.getID() + '">' +
+					'<div class="indent d-none" id="' + this.getID('code_indent') + '">' +
+					'</div>' +
+					'<div class="indent d-none" id="' + this.getID('waiting_indent') + '">' +
 					'</div>' +
 				'<div><span class="bracket">}</span></div>' +
 			'</div>' +
@@ -19,16 +29,54 @@ export class DemoResponsePanelSocket extends KoiSocketTemplateCapable(
 	'</div>';
 	}
 
+	displayWaiting(){
+		const html = `<div>Loading... <span class="key" id="demo_response_timer">0.0 s</span></div>`;
+		this._items['waiting_indent'].innerHTML = html;
+		this._holder.show();
+		this._show('waiting_indent');
+		this._hide('code_indent');
+		this._hide('done_div');
+
+		this._timerStart = Date.now();
+		this._timerInterval = setInterval(() => {
+			const elapsed = (Date.now() - this._timerStart) / 1000;
+			const timerEl = document.getElementById('demo_response_timer');
+			if (timerEl) {
+				timerEl.textContent = `${elapsed.toFixed(1)} s`;
+			}
+		}, 100);
+	}
+
+	displayError(){
+		if (this._timerInterval) {
+			clearInterval(this._timerInterval);
+			this._timerInterval = null;
+		}
+
+		const html = `<div><span class="key">status</span>: <span class="value-string">error</span></div><div><span class="key">error</span>: <span class="value-string">Sorry! Something went wrong.</span></div>`;
+		this._items['code_indent'].innerHTML = html;
+		this._holder.show();
+		this._hide('waiting_indent');
+		this._show('code_indent');
+		this._show('done_div');
+	}
+
 	displayResponse(response){
+		if (this._timerInterval) {
+			clearInterval(this._timerInterval);
+			this._timerInterval = null;
+		}
 		if(!response){
 			return;
 		}
 		const html = Object.entries(JSON.parse(response)).map(([key, value]) => {
 			return `<div><span class="key">"${key}"</span>: <span class="value-string">"${value}"</span></div>`;
 		}).join('');
-
-		this._item.innerHTML = html;
+		this._items['code_indent'].innerHTML = html;
 		this._holder.show();
+		this._hide('waiting_indent');
+		this._show('code_indent');
+		this._show('done_div');
 	}
 
 }
@@ -59,13 +107,41 @@ export class DemoResponsePanel extends KoiSocketConnectable(
 
 	_updateSocket() {
 		super._updateSocket();
-		this.socket.displayResponse(
-			this._connector._item.data.getResponse()
-		);
+		const response = this._connector._item.data.getResponse();
+		if(response){
+			this.socket.displayResponse(response);
+		}else{
+			this.socket.displayError();
+		}
 		const holder = document.getElementById(this.getAttribute('holder_id'));
 		if(holder && typeof(holder.enable) === 'function'){
 			holder.enable();
 		}
+	}
+
+	_displayWaiting(){
+		super._displayWaiting();
+		this.socket.displayWaiting();
+	}
+
+	_displayForbidden() {
+		super._displayForbidden();
+		this.socket.displayError();
+	}
+
+	_displayError() {
+		super._displayError();
+		this.socket.displayError();
+	}
+
+	_displayBadConnection() {
+		super._displayBadConnection();
+		this.socket.displayError();
+	}
+
+	_displayBadResponse() {
+		super._displayBadResponse();
+		this.socket.displayError();
 	}
 
 	_updateSomethingWhenConnectorDataChanged(event_detail){
