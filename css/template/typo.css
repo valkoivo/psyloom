@@ -26,3 +26,7 @@
 .code-block .bracket {
 	color: #d4d4d4;
 }
+
+.perspective_explanation, .mode_explanation{
+	color: rgb(13, 213, 225);
+}

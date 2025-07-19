@@ -76,7 +76,7 @@ export class DemoChatPanelSocket extends KoiSocketTemplateCapable(
 			placeholder: 'Perspective',
 			element_class: 'd-block mb-3'
 		}) +
-		'<p id="' + this.getID('perspective_explanation') + '"></p>' +
+		'<p class="perspective_explanation" id="' + this.getID('perspective_explanation') + '"></p>' +
 		'<p>Now let\'s specify what kind of insight you want to get from the persona</p>' +
 		KoiFormFieldSingleChoice.getTag({
 			element_id: this.getID('mode'),
@@ -86,7 +86,7 @@ export class DemoChatPanelSocket extends KoiSocketTemplateCapable(
 			placeholder: 'Mode',
 			element_class: 'd-block mb-3'
 		}) +
-		'<p id="' + this.getID('mode_explanation') + '"></p>' +
+		'<p class="mode_explanation" id="' + this.getID('mode_explanation') + '"></p>' +
 		'<p>And the last thing to do is write your prompt.</p>' +
 		KoiFormFieldTextarea.getTag({
 			element_id: this.getID('prompt'),
