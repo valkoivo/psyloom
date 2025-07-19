@@ -81,6 +81,14 @@
 	width: 150px;
 	flex-shrink: 0;
 }
+@media (max-width: 768px) {
+	.demo-panel-game-panel .card_description .card-body.card-body-character{
+		flex-direction: column;
+	}
+	.demo-panel-game-panel .card_description .portrait-holder{
+		width: 100px;
+	}
+}
 .demo-panel-game-panel .card_description .card-header h3{
 	margin: 0;
 }
