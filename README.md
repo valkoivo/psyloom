@@ -32,6 +32,13 @@ Psyloom helps you build rich, psychologically grounded personas from free-form d
 
 ---
 
+## Documentation
+
+Full API documentation can be found here:
+- [API v1 Documentation](./docs/API.md)
+
+---
+
 ## 📫 Contact
 
 If you’d like to try the API or get early access:  
