@@ -96,7 +96,7 @@ export class DemoGamePanelSocket extends KoiSocketTemplateCapable(
 
 	prepare() {
 		super.prepare();
-		this.showStep1();
+		this._showPanel("character_choose");
 	}
 
 	constructor({ holder, user_connector_id }) {
