@@ -266,3 +266,10 @@ ul {
 .section-about .card{
 	height: 100%;
 }
+
+.subheader-links{
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	justify-content: center;
+}
