@@ -95,7 +95,7 @@ The response includes a `process_id` which you can use to check the status of th
 
 ### Check Creation Status
 
-Retrieves the status of a personality creation process. Once the process is complete, the response will include the `audience_id` required for interaction.
+Retrieves the status of a personality creation process. Once the process is complete, the response will include the `person_id` required for interaction.
 
 `GET /audience/{process_id}`
 
@@ -115,12 +115,12 @@ curl https://api.psyloom.com/api/v1/audience/4 \
 
 #### Example Response
 
-When the `status` is `done`, the `audience_id` is returned.
+When the `status` is `done`, the `person_id` is returned.
 
 ```json
 {
   "status": "done",
-  "audience_id": "XXXXX"
+  "person_id": "XXXXX"
 }
 ```
 
@@ -141,7 +141,7 @@ Submits a query to a fully generated digital personality. This is the primary en
 
 | Name          | Type   | In   | Description                                                                 |
 |---------------|--------|------|-----------------------------------------------------------------------------|
-| `audience_id`   | string | body | The ID of the personality you want to interact with.                        |
+| `person_id`   | string | body | The ID of the personality you want to interact with.                        |
 | `context`     | string | body | Sets the scene or context for the interaction.                              |
 | `prompt`      | string | body | The input or question for the personality.                                  |
 | `mode`        | string | body | Defines the type of interaction (e.g., `dialogue`).                         |
@@ -154,7 +154,7 @@ curl -X POST https://api.psyloom.com/api/v1/query \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $API_KEY" \
   -d '{
-      "audience_id": "XXXXX",
+      "person_id": "XXXXX",
       "context": "In-person meeting. Romantic dinner.",
       "prompt": "I’m running 20 minutes late.",
       "mode": "dialogue",
