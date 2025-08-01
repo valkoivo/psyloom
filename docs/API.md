@@ -124,6 +124,14 @@ When the `status` is `done`, the `person_id` is returned.
 }
 ```
 
+If the personality is still being created, the status will be `processing`.
+
+```json
+{
+  "status": "processing"
+}
+```
+
 ---
 
 ### Interact with Personality
@@ -146,6 +154,26 @@ Submits a query to a fully generated digital personality. This is the primary en
 | `prompt`      | string | body | The input or question for the personality.                                  |
 | `mode`        | string | body | Defines the type of interaction (e.g., `dialogue`).                         |
 | `perspective` | string | body | The point of view for the response (e.g., `first_person`, `third_person`). |
+
+**About the `perspective` parameter:**
+
+You can choose how the persona responds. There are three options:
+
+*   **`first_person`**: The persona will talk to you directly, using "I" and "me".
+*   **`third_person`**: The model will tell you a story about the persona. It will use "he," "she," or "they" to describe what the persona does and feels. When you write your `context` and `prompt` for this perspective, you should call the persona "the character".
+*   **`other`**: The model uses the persona to do something for you, writing about them in the third person. For example, it can write a letter that is meant for the persona. When you use this perspective, you should call the persona "the character" in your prompts.
+
+**About the `mode` parameter:**
+
+*   **`dialogue`**: Use this mode to talk with the persona. 
+    *   In the `first_person` perspective, the persona will answer you directly. 
+    *   In the `third_person` perspective, the model will describe how the character reacts to your message.
+    *   In the `other` perspective, the model acts as an analyst. It explains to you what the character will likely feel, think, and do in response to your message.
+*   **`emotion`**: Use this mode to understand the persona's feelings.
+    *   In the `first_person` perspective, the persona describes their own emotional state in response to your prompt, focusing on internal feelings.
+    *   In the `third_person` perspective, the model describes the character's emotional reaction, including subtle body language.
+    *   In the `other` perspective, the model acts as an analyst, explaining the nuances of the character's internal emotional experience, even if those feelings aren't shown on the outside.
+*   The API does not remember past parts of the conversation. To have a full dialogue, you need to save the conversation history yourself and include it in the `context` with every new message.
 
 #### Example Request
 
