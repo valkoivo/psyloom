@@ -173,6 +173,18 @@ You can choose how the persona responds. There are three options:
     *   In the `first_person` perspective, the persona describes their own emotional state in response to your prompt, focusing on internal feelings.
     *   In the `third_person` perspective, the model describes the character's emotional reaction, including subtle body language.
     *   In the `other` perspective, the model acts as an analyst, explaining the nuances of the character's internal emotional experience, even if those feelings aren't shown on the outside.
+*   **`reaction`**: Use this mode to see the persona's immediate, instinctive response.
+    *   In the `first_person` perspective, the persona describes what they would do or say impulsively, without overthinking.
+    *   In the `third_person` perspective, the model describes the character's spontaneous physical actions and reflexive responses.
+    *   In the `other` perspective, the model acts as an analyst, explaining the character's immediate behavioral reaction and how it connects to their psychology.
+*   **`interpretation`**: Use this mode to understand how the persona analyzes a situation.
+    *   In the `first_person` perspective, the persona explains what the prompt means to them and what they think is really happening, based on their internal traits.
+    *   In the `third_person` perspective, the model describes the character's thoughts, reasoning, and insights, showing how their traits influence their understanding.
+    *   In the `other` perspective, the model acts as an analyst, explaining the conclusions the character draws and how their assumptions and biases frame their thinking.
+*   **`action`**: Use this mode to perform an action involving the persona.
+    *   In the `first_person` perspective, the persona treats your prompt as an action directed at them and describes how they perceive and react to it.
+    *   In the `third_person` perspective, the model, as a narrator, performs the action you requested *toward* the character, ensuring the output reflects the character's personality.
+    *   In the `other` perspective, the model carries out the action you requested that is directed at the character, generating the full content (like a letter or message).
 *   The API does not remember past parts of the conversation. To have a full dialogue, you need to save the conversation history yourself and include it in the `context` with every new message.
 
 #### Example Request
